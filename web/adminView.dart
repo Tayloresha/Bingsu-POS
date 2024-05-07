@@ -5,12 +5,47 @@ import 'dart:convert';
 import 'dart:html';
 
 void main() {
+  // Remove the storage items
   final addProductForm = document.querySelector('.AddItem form') as FormElement?;
   final table = document.querySelector('.ListItem table') as TableElement?;
 
   // Retrieve products and products2 from local storage or initialize empty lists
   final List<Map<String, dynamic>> products = _getStoredData('products') ?? [];
   final List<Map<String, dynamic>> products2 = _getStoredData('products2') ?? [];
+
+  for (int i = 0; i < products.length; i++) {
+  // Create a new row
+    final newRow = table?.addRow();
+
+    // Add cells to the row
+    final nameCell = newRow?.insertCell(0);
+    final priceCell = newRow?.insertCell(1);
+    final quantityCell = newRow?.insertCell(2);
+    final removeCell = newRow?.insertCell(3);
+
+    // Populate cells with product information
+    nameCell?.text = products[i]['name'];
+    priceCell?.text = 'RM${products[i]['price']}';
+    quantityCell?.text = products2[i]['quantity'].toString();
+
+    // Create a remove button and add it to the remove cell
+    final removeButton = ButtonElement()..text = 'Remove';
+    removeButton.onClick.listen((_) {
+      // Find the index of the clicked row
+      final rowIndex = table?.rows.indexOf(newRow!);
+
+      // Remove the corresponding product from the lists
+      if (rowIndex != null) {
+        window.localStorage.clear();
+        products.removeAt(rowIndex-1);
+        products2.removeAt(rowIndex-1);
+        _storeData('products', products); // Update local storage
+        _storeData('products2', products2);
+      }
+      newRow?.remove();
+    });
+    removeCell?.append(removeButton);
+  }
 
   addProductForm?.onSubmit.listen((event) {
     event.preventDefault(); // Prevent default form submission
@@ -58,14 +93,19 @@ void main() {
       final rowIndex = table?.rows.indexOf(newRow!);
 
       // Remove the corresponding product from the lists
-      if (rowIndex != null && rowIndex >= 0 && rowIndex < products.length) {
-        products.removeAt(rowIndex);
+      if (rowIndex != null) {
+        window.localStorage.clear();
+        products.removeAt(rowIndex-1);
+        products2.removeAt(rowIndex-1);
         _storeData('products', products); // Update local storage
+        _storeData('products2', products2);
       }
+      /***
       if (rowIndex != null && rowIndex >= 0 && rowIndex < products2.length) {
         products2.removeAt(rowIndex);
         _storeData('products2', products2); // Update local storage
       }
+      */
       // Remove the corresponding row from the table
       newRow?.remove();
     });
