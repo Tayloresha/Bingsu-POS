@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="scaffolded-by" content="https://github.com/dart-lang/sdk">
+    <title>(POS)ADMIN VIEW</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="adminView.css">
+    <script defer src="adminView.dart.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <img src="logo.png">
+      <div class="headerInfo">
+        <h2>POINT OF SALE SYSTEM</h2>
+        <p>BINGSU CASE STUDY</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topnav">
+    <a href="index.html">MAIN PAGE</a>
+    <a href="adminView.html">ADMIN VIEW</a>
+    <a href="inventory.html">INVENTORY</a>
+    <a href="#">LOG OUT</a>
+  </div>
+
+  <div class="homepage">
+    <h1>ADMIN VIEW</h1>
+  </div>
+
+<div class="AdminView"> 
+
+  <div class="ListItem">
+    <h1>Product List</h1>
+    <br>
+    <table style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Price (RM)</th>
+        <th>Quantity</th>
+        <th>Remove</th>
+      </tr>
+    </table>
+  </div>
+
+  <div class="AddItem">
+    <h3>ADD NEW PRODUCT</h3><br>
+
+      <form id="add-product-form">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        <label for="price">Price (RM):</label>
+        <input type="double" id="price" name="price" required>
+        <br><br>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required>
+        <br><br>
+        <button type="submit">Add Product</button>
+      </form>
+  </div>
+  
+</div>
+
+
+</body>
+</html>

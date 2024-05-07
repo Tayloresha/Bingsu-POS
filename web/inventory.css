@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Equestria';
+    src: url("https://www.dropbox.com/s/x04iih58ob04d56/Equestria.otf?raw=1");
+  }
+  
+  body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+  }
+  
+
+table th {
+    font-size: 14px;
+    height: 50px;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px;
+    background-color: rgb(210, 230, 236);
+    border: 1px solid #99c9ff;
+}
+
+table td {
+    font-size: 14px;
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #e3e3e3;
+}
+
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin-left: auto; 
+    margin-right: auto;
+    table-layout: fixed;
+}
+
+
+tr:hover {background-color: #d6e4f5e3;}
+
+
+.inventory {
+  text-align: center;
+}

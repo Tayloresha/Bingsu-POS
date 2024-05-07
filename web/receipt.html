@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="receipt.css">
+        <script defer src="main.dart.js"></script>
+
+    </head>
+
+    <body>
+    
+        <h3>
+            Pay button
+        </h3>
+        <button id="myButton">Pay</button>
+        <div id="myPopup" class="popup">
+            <div class="popup-content">
+                
+
+                <div id="invoice-POS">
+    
+                    <center id="top">
+                      <div class="logo"></div>
+                      <div class="info"> 
+                        <h2>BINGSU</h2>
+                      </div><!--End Info-->
+                    </center><!--End InvoiceTop-->
+                    
+                    <div id="mid">
+                      <div class="info">
+                        <h3>Purchase Receipt</h3>
+                        <p> 
+                            Address : Sweet city, state 0123</br>
+                            Email   : bingsu@gmail.com</br>
+                            Phone   : 555-555-5555</br>
+                        </p>
+                      </div>
+                    </div><!--End Invoice Mid-->
+                    
+                    <div id="bot">
+                
+                                    <div id="table">
+                                        <table>
+                                            <tr class="tabletitle">
+                                                <td class="item"><h3>Item</h3></td>
+                                                <td class="quantity"><h3>Qty</h3></td>
+                                                <td class="subtotal"><h3>Sub Total</h3></td>
+                                            </tr>
+                
+                                            <tr class="item">
+                                                <td class="tableitem"><p class="itemtext">Strawberry Bingsu</p></td>
+                                                <td class="tableitem"><p class="itemtext">1</p></td>
+                                                <td class="tableitem"><p class="itemtext">RM8.00</p></td>
+                                            </tr>
+
+                                            <tr class="item">
+                                                <td class="tableitem"><p class="itemtext">Mango Bingsu</p></td>
+                                                <td class="tableitem"><p class="itemtext">1</p></td>
+                                                <td class="tableitem"><p class="itemtext">RM9.00</p></td>
+                                            </tr>
+                
+                                            <tr class="item">
+                                                <td class="tableitem"><p class="itemtext">Chocolate Bingsu</p></td>
+                                                <td class="tableitem"><p class="itemtext">1</p></td>
+                                                <td class="tableitem"><p class="itemtext">RM10.00</p></td>
+                                            </tr>
+                
+                                            <tr class="item">
+                                                <td class="tableitem"><p class="itemtext">Blueberry Bingsu</p></td>
+                                                <td class="tableitem"><p class="itemtext">1</p></td>
+                                                <td class="tableitem"><p class="itemtext">RM8.00</p></td>
+                                            </tr>
+                
+                                            <tr class="item">
+                                                <td class="tableitem"><p class="itemtext">Matcha Bingsu</p></td>
+                                                <td class="tableitem"><p class="itemtext">1</p></td>
+                                                <td class="tableitem"><p class="itemtext">RM8.00</p></td>
+                                            </tr>
+                
+                
+                                            <tr class="tabletitle">
+                                                <td></td>
+                                                <td class="tax"><h3>Tax</h3></td>
+                                                <td class="payment"><h3>RM2.50</h3></td>
+                                            </tr>
+                
+                                            <tr class="tabletitle">
+                                                <td></td>
+                                                <td class="total"><h3>Total</h3></td>
+                                                <td class="payment"><h3>RM45.50</h3></td>
+                                            </tr>
+                
+                                        </table>
+                                    </div><!--End Table-->
+
+                                    <p>Purchased item date and time: <span id='date-time'></span>.</p>
+
+                                    
+                
+                                </div><!--End InvoiceBot-->
+                  </div><!--End Invoice-->
+
+                <button id="closePopup">
+                    Close
+                </button>
+            </div>
+        </div>
+
+        <script>
+            myButton.addEventListener(
+                "click",
+                function () {
+                    myPopup.classList.add("show");
+                }
+            );
+            closePopup.addEventListener(
+                "click",
+                function () {
+                    myPopup.classList.remove(
+                        "show"
+                    );
+                }
+            );
+            window.addEventListener(
+                "click",
+                function (event) {
+                    if (event.target == myPopup) {
+                        myPopup.classList.remove(
+                            "show"
+                        );
+                    }
+                }
+            );
+
+            var dt = new Date();
+            document.getElementById("date-time").innerHTML = dt.toLocaleString();
+
+        </script>
+    </body>
+</html>

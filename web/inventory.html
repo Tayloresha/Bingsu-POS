@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="scaffolded-by" content="https://github.com/dart-lang/sdk">
+    <title>(POS)INVENTORY</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="inventory.css">
+    <script defer src="main.dart.js"></script>
+</head>
+
+
+<body>
+    <div class="header">
+      <div class="logo">
+        <img src="logo.png">
+        <div class="headerInfo">
+          <h2>POINT OF SALE SYSTEM</h2>
+          <p>BINGSU CASE STUDY</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="topnav">
+      <a href="index.html">MAIN PAGE</a>
+      <a href="adminView.html">ADMIN VIEW</a>
+      <a href="inventory.html">INVENTORY</a>
+      <a href="#">LOG OUT</a>
+    </div>
+
+  
+    <div class="inventory">
+    <br>
+    <h2>Product Inventory</h2>
+
+      <div class="inventoryTable">
+        <br>
+        <table>
+          <tr>
+            <th style="width:5%">NO.</th>
+            <th style="width:40%">PRODUCT NAME </th>
+            <th >QUANTITY</th>
+            <th>PRICE</th>
+            <th>TOTAL SALES</th>
+            <th>TOTAL PROFIT</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Strawberry Bingsu</td>
+            <td>10</td>
+            <td>100</td>
+            <td>10</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Mango Bingsu</td>
+            <td>10</td>
+            <td>100</td>
+            <td>10</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Chocolate Bingsu</td>
+            <td>10</td>
+            <td>100</td>
+            <td>10</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Matcha Bingsu</td>
+            <td>10</td>
+            <td>100</td>
+            <td>10</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Blueberry Bingsu</td>
+            <td>10</td>
+            <td>100</td>
+            <td>10</td>
+            <td>200</td>
+          </tr>
+      
+          
+          <tbody id="inventoryTableBody">
+          </tbody>
+        </table>
+        
+        <br>
+        <p>Last updated date and time: <span id='date-time'></span>.</p>
+
+       
+
+    </div>
+  
+  <script>
+
+    var dt = new Date();
+    document.getElementById("date-time").innerHTML = dt.toLocaleString();
+  
+  </script>
+
+  </body>
+</html>
+    

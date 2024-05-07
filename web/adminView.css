@@ -1,0 +1,62 @@
+.homepage {
+    padding-top: 20px;
+    padding-bottom: 45px;
+    gap: 3px;
+    justify-content: center;
+    background-color: rgb(210, 230, 236);
+}
+
+.homepage h1{
+    font-weight:bold;
+    margin:0;
+    color:black;
+    padding-top: 30px;
+    padding-left: 102px;
+    padding-bottom: 5px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+.AdminView {
+    padding-top: 20px;
+    padding-bottom: 45px;
+    padding-left: 60px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: center;
+}
+
+.product-list table, th, tr, td {
+    border:1px solid black;
+    font-family:'Times New Roman', Times, serif, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+
+.ListItem {
+    width: 800px;
+    height: 800px;
+    border: 2px solid  black;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.AddItem {
+    background-color: #c9d7e4;
+    width: 450px;
+    height: 400px;
+    border: 2px solid  black;
+    padding: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.ListItem h1 {
+    text-align: center;
+    color:black;
+}
