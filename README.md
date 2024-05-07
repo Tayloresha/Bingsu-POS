@@ -1,7 +1,7 @@
 <p align="center">
 GROUP BINGSU
   <br>‘POINT OF SALE SYSTEM’<br><br>
-Prepared by Nur Athisha Binti Mohd Zariman (2118676), Nor() & Adriana ()<br><br>
+Prepared by Nur Athisha Binti Mohd Zariman (2118676), Nora() & Adriana ()<br><br>
   ‘POINT OF SALE SYSTEM’ is a website that suggests the best attractions, eateries and accommodations to visit in Penang, Kuala Lumpur, Perak, Terengganu and Sabah.
 
 </p><br>
@@ -23,7 +23,7 @@ Each of the team members prepared one web page for the project as shown in the f
 
 | **Name** | **Contribution** |
 |----------|------------------|
-| Nur Athisha Binti Mohd Zariman (2118676)|- Page: Admin View <br> - adminView.html, adminView.dart, adminView.css, styles.css <br> - Header for every pages along with navigation bars <br> - Complie all codes|
+| Nur Athisha Binti Mohd Zariman (2118676)|- Page: Admin View <br> - adminView.html, adminView.dart, adminView.css, styles.css <br> - Header for every pages <br> - Compile all codes|
 | Nora ()|- Page: Main Page <br> - index.html, main.dart, index.css <br> - do the code for payment calculation|
 | Adriana ()|- Page: Inventory <br> - inventory.html, inventory.dart, inventory.css <br> - do popout for receipt|
 
