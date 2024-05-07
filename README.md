@@ -1,14 +1,14 @@
 <p align="center">
 GROUP BINGSU
   <br>‘POINT OF SALE SYSTEM’<br><br>
-Prepared by Nur Athisha Binti Mohd Zariman (2118676), Nora() & Adriana binti Anuar Kamal (2025778)<br><br>
-  ‘POINT OF SALE SYSTEM’ is a website that suggests the best attractions, eateries and accommodations to visit in Penang, Kuala Lumpur, Perak, Terengganu and Sabah.
+Prepared by Nur Athisha Binti Mohd Zariman (2118676), Nora Alissa binti Ismail(2117862) & Adriana binti Anuar Kamal (2025778)<br><br>
+  ‘POINT OF SALE SYSTEM’ is a website used by businesses to process transactions in retail settings
 
 </p><br>
 
 **1. Project Description**
 <br>
-          This project named ‘Jalan Jalan Tourism’ mainly focuses on giving suggestions and reviews of the best attractions, eateries and accommodations to go to while visiting Penang, Kuala Lumpur, Perak, Terengganu or Sabah. There are a few suggestions for each category which includes pictures of the place, a brief description and also the necessary details on how to get to said places. 
+          This project aims to develop a Point-of-Sale (POS) system with functionalities for both customers and administrators. The system will cater to businesses of all sizes by offering unlimited product storage and detailed sales management features.
 <br><br>
 
 **2. Project Requirement**
@@ -37,7 +37,7 @@ Each of the team members prepared one web page for the project as shown in the f
 | **Name** | **Contribution** |
 |----------|------------------|
 | Nur Athisha Binti Mohd Zariman (2118676)|- Page: Admin View <br> - adminView.html, adminView.dart, adminView.css, styles.css <br> - Header for every pages <br> - Compile all codes|
-| Nora ()|- Page: Main Page <br> - index.html, main.dart, index.css <br> - do the code for payment calculation|
+| Nora Alissa binti Ismail (2117862)|- Page: Main Page <br> - index.html, main.dart, index.css <br> - do the code for payment calculation|
 | Adriana binti Anuar Kamal (2025778)|- Page: Inventory <br> - inventory.html, inventory.dart, inventory.css <br> - do popout for receipt|
 
 <br><br>
@@ -55,10 +55,10 @@ Each of the team members prepared one web page for the project as shown in the f
 
 **5. References**
 <br><br>
-&emsp; Font Awesome. Font Awesome 4.7.0. Retrieved 5 January 2023 from <br> &emsp; https://fontawesome.com/v4/icons/
+&emsp; Build a web app with Dart Retrieved 7 May 2024 from <br> &emsp; https://dart.dev/web/get-started
 <br><br>
-&emsp; material Icons Retrieve 7 January 2023 from <br> &emsp; https://fonts.googleapis.com/icon?family=Material+Icons
+&emsp; dart:html Retrieved 7 May 2024 from <br> &emsp; https://dart.dev/libraries/dart-html
 <br><br>
-&emsp; Booking.com Retrieved 7 January 2023 from <br> &emsp; https://www.booking.com/index
+
 
 
