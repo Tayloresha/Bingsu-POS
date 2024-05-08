@@ -7,9 +7,9 @@ import 'main.dart';
 void main() {
   // Nested list of maps to store product information
   final List<List<Map<String, dynamic>>> localStorageData = getLocalStorageData();    
-  // Variable to store profit
+  // Variable to store profit from admin
   final dynamic localStorageFinalAmount = window.localStorage['finalAmount'];    
-  // Parse finalAmount from local storage
+  // Parse finalAmount from local storage from main
   final double finalAmount = double.parse(localStorageFinalAmount ?? '0'); 
   // Extract data from localStorageData into list
   final List<Map<String, dynamic>> products = localStorageData[0];    
