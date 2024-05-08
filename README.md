@@ -8,7 +8,7 @@ Prepared by Nur Athisha Binti Mohd Zariman (2118676), Nora Alissa binti Ismail(2
 
 **1. Project Description**
 <br>
-          This project aims to develop a Point-of-Sale (POS) system with functionalities for both customers and administrators. The system will cater to businesses of all sizes by offering unlimited product storage and detailed sales management features.
+          This project aims to develop a Point-of-Sale (POS) system with functionalities for administrators. The system will cater to businesses of all sizes by offering unlimited product storage and detailed sales management features.
 <br><br>
 
 **2. Project Requirement**
@@ -36,9 +36,9 @@ Each of the team members prepared one web page for the project as shown in the f
 
 | **Name** | **Contribution** |
 |----------|------------------|
-| Nur Athisha Binti Mohd Zariman (2118676)|- Page: Admin View <br> - adminView.html, adminView.dart, adminView.css, styles.css <br> - Header for every pages <br> - Compile all codes|
+| Nur Athisha Binti Mohd Zariman (2118676)|- Page: Admin View <br> - adminView.html, adminView.dart, adminView.css, styles.css <br> - Header for every pages <br> - Compile all codes <br> - Fixing all codes|
 | Nora Alissa binti Ismail (2117862)|- Page: Main Page <br> - index.html, main.dart, index.css <br> - do the code for payment calculation|
-| Adriana binti Anuar Kamal (2025778)|- Page: Inventory <br> - inventory.html, inventory.dart, inventory.css <br> - do popout for receipt|
+| Adriana binti Anuar Kamal (2025778)|- Page: Inventory <br> - inventory.html, inventory.dart, inventory.css <br> - ~~do popout for receip~~|
 
 <br><br>
 
@@ -46,7 +46,7 @@ Each of the team members prepared one web page for the project as shown in the f
 <br>
 | **Page** | **Description** |
 |----------|------------------|
-| index.html - Main Page|- Display all products available (product name, price, stock/quantity) <br> - Display products selected and the calculation for payment <br> - When 'PAY' button is clicked, receipt will pop out|
+| index.html - Main Page|- Display all products available (product name, price, stock/quantity) <br> - Display products selected and the calculation for payment <br> - ~~When 'PAY' button is clicked, receipt will pop out~~|
 | adminView.html - Admin View|- Display all product descriptions (name), prices and quantities available <br> - Admin can add products <br> - Admin can remove products|
 | inventory.html - Inventory|- Display product availability <br> - Display total profits of sold products|
 
