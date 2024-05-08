@@ -1,18 +1,26 @@
+//NUR ATHISHA BINTI MOHD ZARIMAN 2118676
+
 // ignore_for_file: deprecated_member_use
 
 import 'package:web/helpers.dart';
+//converting JSON data to Dart objects (and vice versa)
 import 'dart:convert';
 import 'dart:html';
 
 void main() {
-  // Remove the storage items
+  // This selects the <form> element inside an element with the class .AddItem
   final addProductForm = document.querySelector('.AddItem form') as FormElement?;
+  // This selects the <table> element inside an element with the class .ListItem
   final table = document.querySelector('.ListItem table') as TableElement?;
 
   // Retrieve products and products2 from local storage or initialize empty lists
   final List<Map<String, dynamic>> products = _getStoredData('products') ?? [];
   final List<Map<String, dynamic>> products2 = _getStoredData('products2') ?? [];
 
+  //List<Map<String, dynamic>> represents a list of maps where each map contains string keys and values of any type.
+  //List: Indicates that this is a list, which is an ordered collection of items.
+
+  // Populate the table with products that are already inside local storage
   for (int i = 0; i < products.length; i++) {
   // Create a new row
     final newRow = table?.addRow();
@@ -35,18 +43,19 @@ void main() {
       final rowIndex = table?.rows.indexOf(newRow!);
 
       // Remove the corresponding product from the lists
-      if (rowIndex != null) {
-        window.localStorage.clear();
-        products.removeAt(rowIndex-1);
-        products2.removeAt(rowIndex-1);
+      if (rowIndex != null) { //If a valid rowIndex is found
+        window.localStorage.clear();  //clears all data in the local storage
+        products.removeAt(rowIndex-1);  // Removes the product at the specified index
+        products2.removeAt(rowIndex-1); 
         _storeData('products', products); // Update local storage
         _storeData('products2', products2);
       }
-      newRow?.remove();
+      newRow?.remove(); //removes the row
     });
-    removeCell?.append(removeButton);
+    removeCell?.append(removeButton); //appends the remove button to the remove cell
   }
 
+  // Populate the table with products that are entered by user
   addProductForm?.onSubmit.listen((event) {
     event.preventDefault(); // Prevent default form submission
 
@@ -100,13 +109,6 @@ void main() {
         _storeData('products', products); // Update local storage
         _storeData('products2', products2);
       }
-      /***
-      if (rowIndex != null && rowIndex >= 0 && rowIndex < products2.length) {
-        products2.removeAt(rowIndex);
-        _storeData('products2', products2); // Update local storage
-      }
-      */
-      // Remove the corresponding row from the table
       newRow?.remove();
     });
     removeCell?.append(removeButton);
@@ -118,16 +120,17 @@ void main() {
 
 // Function to retrieve data from local storage
 List<Map<String, dynamic>>? _getStoredData(String key) {
-  final String? jsonData = window.localStorage[key];
+  final String? jsonData = window.localStorage[key];  //This line retrieves the data associated with the given key from the local storage. 
   if (jsonData != null) {
     return List<Map<String, dynamic>>.from(jsonDecode(jsonData));
   }
   return null;
-}
+}   // retrieves data from the local storage using a provided key, 
+    //decodes it from JSON format into a list of maps, and returns the decoded data.
 
 // Function to store data in local storage
 void _storeData(String key, List<Map<String, dynamic>> data) {
-  final String jsonData = jsonEncode(data);
+  final String jsonData = jsonEncode(data);   //convert the data object (a list of maps) into a JSON-encoded string.
   window.localStorage[key] = jsonData;
 }
 
