@@ -5,11 +5,11 @@ import 'adminView.dart';
 import 'main.dart';
 
 void main() {
-  // Nested list of maps to store product information
+  // Nested list of maps to store product information from admin
   final List<List<Map<String, dynamic>>> localStorageData = getLocalStorageData();    
-  // Variable to store profit from admin
+  // Variable to store profit from main
   final dynamic localStorageFinalAmount = window.localStorage['finalAmount'];    
-  // Parse finalAmount from local storage from main
+  // Parse finalAmount from local storage
   final double finalAmount = double.parse(localStorageFinalAmount ?? '0'); 
   // Extract data from localStorageData into list
   final List<Map<String, dynamic>> products = localStorageData[0];    
