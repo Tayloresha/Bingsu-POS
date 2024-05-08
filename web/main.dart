@@ -22,6 +22,7 @@ void main() {
   double totalDiscount = 0.0;
   double totalPrice = 0.0;
 
+// Rounds the final price
   double roundPrice(double amount) {
     // Multiply by 100 to shift the decimal two places (e.g., 6.01 becomes 601.0).
     double scaledValue = amount * 100;
@@ -43,13 +44,11 @@ void main() {
       scaledValue += (10 - remainder);
     }
 
-    print(scaledValue / 100);
-
     // Scale back to the original range and return the rounded value
     return scaledValue / 100;
   }
 
-  // Function to update totals
+  // Function to Update Totals
   void updateTotals() {
     discountSpan?.text = totalDiscount.toStringAsFixed(2);
     double taxedAmount = subtotal * 1.06; // Applying 6% GST
@@ -88,6 +87,7 @@ void main() {
     // Initialize previous quantity value to 0
     int previousQuantity = 0;
 
+    // Event Listener for Quantity
     quantityInput.onInput.listen((event) {
       final int quantity = int.parse(quantityInput.value ?? '0');
       double productTotal = products[i]['price'] * quantity;
@@ -127,6 +127,7 @@ void main() {
       updateTotals(); // Update total whenever a quantity changes
     });
   }
+
 // Function that clears payment details
   void clearPayment() {
     // Clear payment details
@@ -144,7 +145,7 @@ void main() {
   // Query the pay button
   final ButtonElement payButton = querySelector('.pay-button') as ButtonElement;
 
-  // Attach event listener to the pay button
+  // Event listener to the pay button
   payButton.onClick.listen((_) {
     // Clear payment on the table
     clearPayment();
