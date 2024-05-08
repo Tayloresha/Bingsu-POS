@@ -1,4 +1,4 @@
-// Adriana binti Anuar Kamal (2025778) 
+// Adriana binti Anuar Kamal 2025778 
 import 'package:web/helpers.dart';
 import 'dart:html';
 import 'adminView.dart';
