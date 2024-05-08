@@ -50,14 +50,22 @@ void main() {
 
   // Function to Update Totals
   void updateTotals() {
+    // print discount
     discountSpan?.text = totalDiscount.toStringAsFixed(2);
+
     double taxedAmount = subtotal * 1.06; // Applying 6% GST
-    gstSpan?.text = (taxedAmount - subtotal).toStringAsFixed(2);
+
+    // print total before rounding
     totalBeforeRoundSpan?.text =
         (totalPrice - totalDiscount + (taxedAmount - subtotal))
             .toStringAsFixed(2);
+
+    // print gst
+    gstSpan?.text = (totalPrice * 0.06).toStringAsFixed(2);
     double finalAmount =
         roundPrice(totalPrice - totalDiscount + (taxedAmount - subtotal));
+
+    // print total after rounding
     totalSpan?.text =
         'RM${finalAmount.toStringAsFixed(2)} on ${purchaseTime.toString()}';
 
