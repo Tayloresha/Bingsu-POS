@@ -6,8 +6,8 @@ import 'main.dart';
 
 void main() {
   final List<List<Map<String, dynamic>>> localStorageData = getLocalStorageData();
-  final dynamic localStorageDataProfit = getLocalStorageDataProfit();
-  final double sumProfit = localStorageDataProfit;
+  final dynamic localStorageFinalAmount = window.localStorage['finalAmount'];
+  final double finalAmount = double.parse(localStorageFinalAmount ?? '0'); // Parse finalAmount from local storage
   final List<Map<String, dynamic>> products = localStorageData[0];
   final List<Map<String, dynamic>> products2 = localStorageData[1];
   final table = document.querySelector('#list-table') as TableElement?;
@@ -31,7 +31,7 @@ void main() {
     quantityCell?.text = products2[i]['quantity'].toString();;
 
   }
-  totalProfit?.text = sumProfit.toStringAsFixed(2);
+  totalProfit?.text = finalAmount.toStringAsFixed(2); // Display finalAmount
 
   
 }
