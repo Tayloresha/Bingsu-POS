@@ -5,13 +5,13 @@ import 'adminView.dart';
 import 'main.dart';
 
 void main() {
-  final List<List<Map<String, dynamic>>> localStorageData = getLocalStorageData();
-  final dynamic localStorageFinalAmount = window.localStorage['finalAmount'];
+  final List<List<Map<String, dynamic>>> localStorageData = getLocalStorageData();    //nested list of maps to store product information
+  final dynamic localStorageFinalAmount = window.localStorage['finalAmount'];    //variable to store profit
   final double finalAmount = double.parse(localStorageFinalAmount ?? '0'); // Parse finalAmount from local storage
-  final List<Map<String, dynamic>> products = localStorageData[0];
-  final List<Map<String, dynamic>> products2 = localStorageData[1];
-  final table = document.querySelector('#list-table') as TableElement?;
-  final totalProfit = document.querySelector('#profit');
+  final List<Map<String, dynamic>> products = localStorageData[0];      //extract data from localStorageData into list
+  final List<Map<String, dynamic>> products2 = localStorageData[1];    //extract data from localStorageData into list
+  final table = document.querySelector('#list-table') as TableElement?;    //select table element
+  final totalProfit = document.querySelector('#profit');    //select profit element
 
 
 // Iterate over products list and create a row for each product
