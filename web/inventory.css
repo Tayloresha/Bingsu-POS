@@ -31,6 +31,7 @@ border: 2px solid black; /* Black border for each section */
 padding: 15px;
 display: flex;
 flex-direction: column;
+height: 290;
 }
 .half-section2 {
   flex: 1; /* Ensure sections are equal in width */
@@ -38,6 +39,7 @@ border: 2px solid black; /* Black border for each section */
 padding: 15px;
 display: flex;
 flex-direction: column;
+height: 290px;
 }
 
 .half-section h2 {
