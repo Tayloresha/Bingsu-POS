@@ -1,261 +1,152 @@
-// ignore: deprecated_member_use
+// Made By Nora Alissa bint Ismail (2117862)
 import 'package:web/helpers.dart';
 import 'dart:html';
+import 'adminView.dart';
 
 void main() {
-  Storage storage = window.localStorage;
+  final List<List<Map<String, dynamic>>> localStorageData =
+      getLocalStorageData();
+  final List<Map<String, dynamic>> products = localStorageData[0];
+  final TableElement? table =
+      document.querySelector('#list-table') as TableElement?;
+  final Element? totalSpan = document.querySelector('#total-after-rounding');
+  final Element? subTotalSpan = document.querySelector('#sub-total');
+  final Element? discountSpan = document.querySelector('#discount');
+  final Element? gstSpan = document.querySelector('#gst');
+  final Element? totalBeforeRoundSpan =
+      document.querySelector('#total-before-rounding');
+  final DateTime purchaseTime = DateTime.now();
 
-  double totalPrice = 0;
+  double subtotal = 0.0;
+  double discount = 0.0;
+  double totalDiscount = 0.0;
+  double totalPrice = 0.0;
 
-  // APPEND PRODUCT TO PRODUCT LIST
-  // Find the product-grid element
-  // ignore: deprecated_member_use
-  DivElement productGrid = querySelector('.product-grid') as DivElement;
+  double roundPrice(double amount) {
+    // Multiply by 100 to shift the decimal two places (e.g., 6.01 becomes 601.0).
+    double scaledValue = amount * 100;
 
-  // List to store product information
-  List<Map<String, dynamic>> products = [
-    {'name': '', 'price': 'RM5.00', 'stock': 5, 'id': 1},
-    {'name': 'Apple', 'price': 'RM3.00', 'stock': 10, 'id': 2},
-    // Add more products as needed
-  ];
+    // Subtract the integer part from the scaled value to isolate the decimal part
+    double decimalPart = scaledValue - scaledValue.floor();
 
-  // Function to append a product to the product grid
-  void appendProduct(Map<String, dynamic> product) {
-    // Create a new product item
-    DivElement productItem = DivElement();
-    productItem.className = 'product-list';
+    // Calculate the remainder when dividing by 10 (to check cents above the last whole ten)
+    double remainder = decimalPart % 10;
 
-    // Create elements for the product item
-    HeadingElement productName = HeadingElement.h1();
-    productName.text = product['name'];
+    print(remainder);
 
-    ParagraphElement price = ParagraphElement();
-    price.text = product['price'];
-
-    HeadingElement stock = HeadingElement.h3();
-    stock.text = 'In Stock: ';
-
-    SpanElement stockValue = SpanElement();
-    stockValue.text = product['stock'].toString();
-
-    DivElement counterContainer = DivElement();
-    counterContainer.className = 'counter-container';
-
-    ButtonElement decrementButton = ButtonElement();
-    decrementButton.text = '-';
-    decrementButton.id = 'decrement-button${product['id']}';
-
-    ButtonElement incrementButton = ButtonElement();
-    incrementButton.text = '+';
-    incrementButton.id = 'increment-button${product['id']}';
-
-    // Counter
-    SpanElement counterValue = SpanElement();
-    counterValue.text = '0';
-    counterContainer.append(decrementButton);
-    counterContainer.append(counterValue);
-    counterContainer.append(incrementButton);
-
-    // Append elements to the product item
-    stock.append(stockValue);
-
-    productItem.append(productName);
-    productItem.append(price);
-    productItem.append(stock);
-    productItem.append(counterContainer);
-
-    // Append the product item to the product-grid
-    productGrid.append(productItem);
-  }
-
-  // CURRENTLY NOT IN USE
-  // Append each product to the product grid
-  //for (var product in products) {
-  //appendProduct(product);
-  //}
-
-  // APPEND PRODUCT TO PAYMENT TABLE
-
-  // Initialize a list to store product data
-  List<Map<String, String>> productList = [];
-
-  // Function to add a row to the table
-  void addRowToTable(int number, String description, double basePrice,
-      int quantity, double totalPrice) {
-    // Get the table element
-    // ignore: deprecated_member_use
-    TableElement table = querySelector('#payment-table') as TableElement;
-
-    // Create a map to store product data for this row
-    Map<String, String> rowData = {
-      'number': number.toString(),
-      'description': description,
-      'basePrice': basePrice.toStringAsFixed(2),
-      'quantity': quantity.toString(),
-      'totalPrice': totalPrice.toStringAsFixed(2)
-    };
-
-    // Append the map to the list
-    productList.add(rowData);
-
-    // Create a new row
-    TableRowElement row = table.addRow();
-
-    // Add cells to the row
-    row.addCell().text = number.toString(); // Number
-    row.addCell().text = description; // Product Description
-    TableCellElement basePriceCell = row.addCell(); // Base Price
-    var basePriceSpan = SpanElement();
-    basePriceSpan.id = 'base-price$number';
-    basePriceSpan.text = basePrice.toStringAsFixed(2);
-    basePriceCell.append(basePriceSpan);
-
-    TableCellElement qtyCell = row.addCell(); // Quantity
-    var qtySpan = SpanElement();
-    qtySpan.id = 'qty-value$number';
-    qtySpan.text = quantity.toString();
-    qtyCell.append(qtySpan);
-
-    TableCellElement totalPriceCell = row.addCell(); // Total Price
-    var totalPriceSpan = SpanElement();
-    totalPriceSpan.id = 'total-price$number';
-    totalPriceSpan.text = totalPrice.toStringAsFixed(2);
-    totalPriceCell.append(totalPriceSpan);
-  }
-
-  // CURRENTLY NOT IN USE
-  //  Add a row to the table
-  //addRowToTable(1, 'Banana', 5.00, 0, 0.00);
-
-  // SUBTOTAL
-  var subTotal = querySelector('#sub-total') as SpanElement;
-
-  void updateSubTotal() {
-    subTotal.text = totalPrice.toStringAsFixed(2);
-  }
-
-  var incrementButton = querySelector('#increment-button1') as ButtonElement;
-  var decrementButton = querySelector('#decrement-button1') as ButtonElement;
-  var qtyValue1 = querySelector('#qty-value1') as SpanElement;
-  var stockValue1 = querySelector('#stock-value1') as Element;
-  var totalPrice1 = querySelector('#total-price1') as SpanElement;
-  var basePrice1 = querySelector('#base-price1') as Element;
-  var basePrice = double.parse(basePrice1.innerHTML);
-
-  // DISCOUNT
-  var discount = querySelector('#discount') as SpanElement;
-
-  double calculateDiscount(double basePrice) {
-    // Calculate the discount amount (2% of the base price)
-    double discountAmount = -(0.02 * basePrice);
-
-    // Return the discounted price
-    return discountAmount;
-  }
-
-  // GST
-  var gst = querySelector('#gst') as SpanElement;
-
-  double calculateGST(double totalPrice) {
-    // Calculate the GST amount (6% of the total price)
-    double gstAmount = 0.06 * totalPrice;
-
-    // Return the GST amount
-    return gstAmount;
-  }
-
-  // ROUNDING
-  var totalAfterRounding =
-      querySelector('#total-after-rounding') as SpanElement;
-
-  void roundTotal(double total) {
-    double remainder = total % 1;
-    double roundedValue = total - remainder;
-    if (remainder < 0.01) {
-      roundedValue += remainder.floorToDouble();
-    } else if (remainder < 0.05) {
-      roundedValue += remainder.ceilToDouble();
-    } else {
-      roundedValue += remainder;
+    // Apply custom rounding rules
+    if (remainder > 0 && remainder < 5) {
+      // If remainder is between 1 and 4 (inclusive), subtract remainder to round down to the nearest ten
+      scaledValue -= remainder;
+    } else if (remainder >= 5 && remainder <= 9) {
+      // If remainder is between 5 and 9, add (10 - remainder) to round up to the next ten
+      scaledValue += (10 - remainder);
     }
 
-    totalAfterRounding.text = roundedValue.toStringAsFixed(2);
+    print(scaledValue / 100);
+
+    // Scale back to the original range and return the rounded value
+    return scaledValue / 100;
   }
 
-  // TOTAL AFTER DISCOUNT AND GST
-  var totalBeforeRounding =
-      querySelector('#total-before-rounding') as SpanElement;
+  // Function to update totals
+  void updateTotals() {
+    discountSpan?.text = totalDiscount.toStringAsFixed(2);
+    double taxedAmount = subtotal * 1.06; // Applying 6% GST
+    gstSpan?.text = (taxedAmount - subtotal).toStringAsFixed(2);
+    totalBeforeRoundSpan?.text =
+        (totalPrice - totalDiscount + (taxedAmount - subtotal))
+            .toStringAsFixed(2);
+    double finalAmount =
+        roundPrice(totalPrice - totalDiscount + (taxedAmount - subtotal));
+    totalSpan?.text =
+        'RM${finalAmount.toStringAsFixed(2)} on ${purchaseTime.toString()}';
 
-  // Calculate the total after discount and gst
-  void calculateTotal() {
-    double discountAmount = calculateDiscount(basePrice);
-    double gstAmount = calculateGST(totalPrice);
-
-    // Calculate the total after discount and gst
-    double total = totalPrice + discountAmount + gstAmount;
-
-    totalBeforeRounding.text = total.toStringAsFixed(2);
-
-    roundTotal(total);
+    // Store finalAmount in local storage
+    window.localStorage['finalAmount'] = finalAmount.toString();
   }
 
-  int counter = 0;
+  // Iterate over products list and create a row for each product
+  for (int i = 0; i < products.length; i++) {
+    final newRow = table?.addRow();
+    final noCell = newRow?.insertCell(0);
+    final nameCell = newRow?.insertCell(1);
+    final priceCell = newRow?.insertCell(2);
+    final quantityCell = newRow?.insertCell(3);
+    final totalCell = newRow?.insertCell(4);
 
-  // INCREMENT AND DECREMENT BUTTONS
-  void updateCounter(int value) {
-    counter = value;
-    qtyValue1.text = '$counter';
-  }
+    // Populate cells with product information
+    noCell?.text = (i + 1).toString();
+    nameCell?.text = products[i]['name'];
+    priceCell?.text = 'RM${products[i]['price'].toString()}';
 
-  void updateTotalPrice() {
-    totalPrice = counter * basePrice;
-    totalPrice1.text = totalPrice.toStringAsFixed(2);
-  }
+    // Create input element for quantity
+    final quantityInput = NumberInputElement();
+    quantityInput.min = '0';
+    quantityCell?.append(quantityInput);
 
-  incrementButton.onClick.listen((_) {
-    if (counter < int.parse(stockValue1.innerHTML)) {
-      updateCounter(counter + 1);
-      if (counter == 2) {
-        discount.text = calculateDiscount(basePrice).toStringAsFixed(2);
+    // Initialize previous quantity value to 0
+    int previousQuantity = 0;
+
+    quantityInput.onInput.listen((event) {
+      final int quantity = int.parse(quantityInput.value ?? '0');
+      double productTotal = products[i]['price'] * quantity;
+
+      final int currentQuantity = int.parse(quantityInput.value ?? '0');
+
+      if (currentQuantity > previousQuantity) {
+        // when the quantity increases
+        if (quantity == 2) {
+          discount = (productTotal / 2) *
+              0.02; // 2% discount for the same item purchased twice
+          totalDiscount += discount;
+        }
+        subtotal += productTotal;
+
+        totalCell?.text = productTotal.toStringAsFixed(2);
+        totalPrice += products[i]['price'];
+        subTotalSpan?.text =
+            totalPrice.toStringAsFixed(2); // Display subtotal here
+      } else if (currentQuantity < previousQuantity) {
+        // when the quantity decreases
+        if (quantity < 2) {
+          discount = (productTotal / 2) *
+              0.02; // 2% discount for the same item purchased twice
+          totalDiscount -= discount;
+        }
+        subtotal -= productTotal;
+
+        totalCell?.text = productTotal.toStringAsFixed(2);
+        totalPrice -= products[i]['price'];
+        subTotalSpan?.text =
+            totalPrice.toStringAsFixed(2); // Display subtotal here
       }
-      updateTotalPrice();
-      updateSubTotal();
-      gst.text = calculateGST(totalPrice).toStringAsFixed(2);
-      calculateTotal();
-    }
-  });
 
-  decrementButton.onClick.listen((_) {
-    if (counter > 0) {
-      updateCounter(counter - 1);
-      if (counter == 1) {
-        discount.text = '0.00';
-      }
-      updateTotalPrice();
-      updateSubTotal();
-      gst.text = calculateGST(totalPrice).toStringAsFixed(2);
-      calculateTotal();
-    }
-  });
+      previousQuantity = currentQuantity;
 
-  // PAY BUTTON
-  var payButton = querySelector(".pay-button") as ButtonElement;
+      updateTotals(); // Update total whenever a quantity changes
+    });
+  }
+// Function that clears payment details
+  void clearPayment() {
+    // Clear payment details
+    subTotalSpan?.text = '0.00';
 
+    discountSpan?.text = '0.00';
+
+    gstSpan?.text = '0.00';
+
+    totalBeforeRoundSpan?.text = '0.00';
+
+    totalSpan?.text = '0.00';
+  }
+
+  // Query the pay button
+  final ButtonElement payButton = querySelector('.pay-button') as ButtonElement;
+
+  // Attach event listener to the pay button
   payButton.onClick.listen((_) {
-    // Clear payment display
-    qtyValue1.text = '0';
-    totalPrice = 0;
-    totalPrice1.text = '0.00';
-    subTotal.text = '0.00';
-    discount.text = '0.00';
-    gst.text = '0.00';
-    totalBeforeRounding.text = '0.00';
-    totalAfterRounding.text = '0.00';
-
-    // Remove all rows from the payment-table
-    var paymentTableBody = querySelector('#payment-table > tbody') as Element;
-    paymentTableBody.innerHTML = ''; // Clear the inner HTML to remove all rows
-
-    // Display Receipt
+    // Clear payment on the table
+    clearPayment();
   });
 }
