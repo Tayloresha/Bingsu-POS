@@ -5,16 +5,23 @@ import 'adminView.dart';
 import 'main.dart';
 
 void main() {
-  final List<List<Map<String, dynamic>>> localStorageData = getLocalStorageData();    //nested list of maps to store product information
-  final dynamic localStorageFinalAmount = window.localStorage['finalAmount'];    //variable to store profit
-  final double finalAmount = double.parse(localStorageFinalAmount ?? '0'); // Parse finalAmount from local storage
-  final List<Map<String, dynamic>> products = localStorageData[0];      //extract data from localStorageData into list
-  final List<Map<String, dynamic>> products2 = localStorageData[1];    //extract data from localStorageData into list
-  final table = document.querySelector('#list-table') as TableElement?;    //select table element
-  final totalProfit = document.querySelector('#profit');    //select profit element
+  // Nested list of maps to store product information
+  final List<List<Map<String, dynamic>>> localStorageData = getLocalStorageData();    
+  // Variable to store profit
+  final dynamic localStorageFinalAmount = window.localStorage['finalAmount'];    
+  // Parse finalAmount from local storage
+  final double finalAmount = double.parse(localStorageFinalAmount ?? '0'); 
+  // Extract data from localStorageData into list
+  final List<Map<String, dynamic>> products = localStorageData[0];    
+  // Extract data from localStorageData into list
+  final List<Map<String, dynamic>> products2 = localStorageData[1]; 
+  // Select table element
+  final table = document.querySelector('#list-table') as TableElement?;    
+   // Select profit element
+  final totalProfit = document.querySelector('#profit');   
 
 
-// Iterate over products list and create a row for each product
+  // Iterate over products list and create a row for each product
   for (int i = 0; i < products.length; i++) {
     // Create a new row
     final newRow = table?.addRow();
@@ -31,7 +38,8 @@ void main() {
     quantityCell?.text = products2[i]['quantity'].toString();;
 
   }
-  totalProfit?.text = finalAmount.toStringAsFixed(2); // Display finalAmount
+  // Display finalAmount
+  totalProfit?.text = finalAmount.toStringAsFixed(2); 
 
   
 }
